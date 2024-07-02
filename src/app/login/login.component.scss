@@ -1,0 +1,100 @@
+// Variáveis de cores para fácil personalização
+$primary-color: #4CAF50;
+$secondary-color: #FFFFFF;
+$background-color: #F5F5F5;
+$input-background: #FFFFFF;
+$input-border: #CCCCCC;
+$input-focus: $primary-color;
+$button-background: $primary-color;
+$button-hover: darken($primary-color, 10%);
+$error-color: #FF5252;
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: $background-color;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Centraliza verticalmente */
+  height: 100vh;
+  margin: 0;
+}
+
+.login-container {
+  background: $secondary-color;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centraliza verticalmente */
+  align-items: center; /* Centraliza horizontalmente */
+  margin: auto; /* Centraliza o contêiner na tela */
+}
+
+h2 {
+  margin-bottom: 1rem;
+  color: $primary-color;
+}
+
+form {
+  width: 100%; /* Ajusta o formulário para ocupar todo o espaço disponível */
+
+  .form-group {
+    margin-bottom: 1rem;
+    text-align: left;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: $primary-color;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid $input-border;
+      border-radius: 4px;
+      background: $input-background;
+      transition: border-color 0.3s;
+
+      &:focus {
+        border-color: $input-focus;
+        outline: none;
+      }
+    }
+
+    .error-message {
+      margin-top: 0.25rem;
+      color: $error-color;
+      font-size: 0.875rem;
+    }
+  }
+
+  .btn-primary {
+    background-color: $button-background;
+    color: $secondary-color;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $button-hover;
+    }
+  }
+
+  
+}
+
+.toggle-link {
+    margin-top: 10px;
+    color: #4CAF50;
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
+  }
