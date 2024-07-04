@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class WeatherService {
   private apiKey = '9f9e85cae6ff2ddada28182540e989e6';
-  private apiUrl = 'https://api.openweathermap.org/data/2.5/weather';
+  private apiUrl = 'https://localhost:44341/api/weather/';
 
   constructor(private http: HttpClient) {}
 
@@ -19,7 +19,18 @@ export class WeatherService {
       .set('units', 'metric')
       .set('appid', this.apiKey);
     console.log(params);
-    
+
     return this.http.get(this.apiUrl, { params });
+  }
+
+  async getWeather(cityName: string) {
+    const apiUrl = `${this.apiKey, cityName}`;
+    try {
+      const response = await this.http.get(apiUrl).toPromise();
+      return response;
+    } catch (error) {
+      console.error('Erro ao obter dados do clima:', error);
+      throw error;
+    }
   }
 }

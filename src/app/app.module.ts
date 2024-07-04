@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { WeatherForecastComponent } from './weather-forecast/weather-forecast.component';
 import { HttpClientModule } from '@angular/common/http';
+import { UserService } from './services/user.service';
 
 @NgModule({
   imports: [
@@ -19,7 +20,9 @@ import { HttpClientModule } from '@angular/common/http';
     WeatherForecastComponent,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    UserService
+  ],
   bootstrap: [AppComponent], // Pode ser ajustado com `bootstrapApplication` se necessário
 })
 export class AppModule {}

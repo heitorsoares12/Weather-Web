@@ -6,7 +6,8 @@ import { WeatherForecastComponent } from './weather-forecast/weather-forecast.co
 export const routes: Routes = [
   { path: '', redirectTo: '/weather', pathMatch: 'full' }, // Rota padrão
   { path: 'weather', component: WeatherForecastComponent }, // Rota para o componente de previsão do tempo
-  { path: '**', redirectTo: '/weather', pathMatch: 'full' } 
+  { path: 'login', component: LoginComponent },
+  { path: '**', redirectTo: '/weather', pathMatch: 'full' }
 ];
 
 @NgModule({

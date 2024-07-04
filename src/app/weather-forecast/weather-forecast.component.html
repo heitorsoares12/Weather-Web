@@ -1,40 +1,7 @@
-<!-- weather-forecast.component.html -->
-
-<div class="container">
-    <div class="form">
-      <h3>Confira o clima de uma cidade:</h3>
-      <div class="form-input-container">
-        <input type="text" placeholder="Digite o nome da cidade" [(ngModel)]="city" />
-        <button (click)="searchWeather()">Pesquisar</button>
-      </div>
-    </div>
-  
-    <div *ngIf="loading" id="loader">
-      <i class="fa-solid fa-spinner"></i> Carregando...
-    </div>
-  
-    <div *ngIf="error" id="error-message">
-      <p>{{ error }}</p>
-    </div>
-  
-    <div *ngIf="weatherData" id="weather-data">
-      <h2>
-        <i class="fa-solid fa-location-dot"></i> {{ weatherData.name }}
-        <img [src]="'https://www.countryflags.io/' + weatherData.sys.country + '/shiny/24.png'" />
-      </h2>
-      <p id="temperature">{{ weatherData.main.temp }}&deg;C</p>
-      <div id="description-container">
-        <p id="description">{{ weatherData.weather[0].description }}</p>
-        <img [src]="'http://openweathermap.org/img/wn/' + weatherData.weather[0].icon + '.png'" alt="Condições atuais">
-      </div>
-      <div id="details-container">
-        <p id="humidity">
-          <i class="fa-solid fa-droplet"></i> {{ weatherData.main.humidity }}%
-        </p>
-        <p id="wind">
-          <i class="fa-solid fa-wind"></i> {{ weatherData.wind.speed }} m/s
-        </p>
-      </div>
-    </div>
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Cidade</label>
+    <input type="text" class="form-control" id="city" placeholder="Insira a cidade" [(ngModel)]="cityName">
   </div>
-  
+  <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+</form>

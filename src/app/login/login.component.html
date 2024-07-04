@@ -10,6 +10,7 @@
     </form>
     <div class="toggle-link" (click)="toggleRegister()">Cadastrar novo CPF</div>
     <div *ngIf="showRegisterForm">
+      <hr>
       <h2>Cadastro</h2>
       <form (ngSubmit)="submitRegisterForm()" #registerForm="ngForm" class="form">
         <div class="form-group">

@@ -11,32 +11,47 @@ import { FormsModule } from '@angular/forms';
   imports: [CommonModule, FormsModule]
 })
 export class WeatherForecastComponent {
-  city: string = '';
+  cityName: string = '';
   weatherData: any = null;
-  loading: boolean = false;
-  error: string = '';
+  errorMessage: string = '';
 
   constructor(private weatherService: WeatherService) {}
 
-  searchWeather() {
-    if (!this.city.trim()) {
-      this.error = 'Por favor, digite o nome da cidade.';
+  async onSubmit() {
+    console.log("teste");
+
+    if (!this.cityName) {
+      this.errorMessage = 'Você precisa digitar uma cidade...';
       return;
     }
 
-    this.loading = true;
-    this.weatherService.getWeatherByCity(this.city.trim())
-      .subscribe(
-        (data) => {
-          this.weatherData = data;
-          this.loading = false;
-          this.error = '';
-        },
-        (error) => {
-          this.error = 'Não foi possível obter o clima da cidade.';
-          this.loading = false;
-          console.error(error);
-        }
-      );
+    try {
+      const weatherInfo = await this.weatherService.getWeatherByCity(this.cityName);
+      if (weatherInfo) {
+        console.log(weatherInfo);
+      } else {
+        this.errorMessage = 'Não foi possível localizar a cidade.';
+        this.weatherData = null;
+      }
+    } catch (error) {
+      console.error('Erro ao buscar previsão do tempo:', error);
+      this.errorMessage = 'Ocorreu um erro ao buscar a previsão do tempo. Por favor, tente novamente mais tarde.';
+    }
+  }
+
+  showInfo(weatherInfo: any) {
+    this.errorMessage = '';
+
+    this.weatherData = {
+      city: weatherInfo.name,
+      country: weatherInfo.sys.country,
+      temp: weatherInfo.main.temp,
+      tempMax: weatherInfo.main.temp_max,
+      tempMin: weatherInfo.main.temp_min,
+      description: weatherInfo.weather[0].description,
+      tempIcon: weatherInfo.weather[0].icon,
+      windSpeed: weatherInfo.wind.speed,
+      humidity: weatherInfo.main.humidity
+    };
   }
 }
